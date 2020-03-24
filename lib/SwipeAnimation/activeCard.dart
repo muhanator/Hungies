@@ -19,12 +19,12 @@ Positioned cardDemo(
     Function swipeLeft) {
   Size screenSize = MediaQuery.of(context).size;
   // print("Card");
-  return new Positioned(
+  return  Positioned(
     bottom: 100.0 + bottom,
     right: flag == 0 ? right != 0.0 ? right : null : null,
     left: flag == 1 ? right != 0.0 ? right : null : null,
-    child: new Dismissible(
-      key: new Key(new Random().toString()),
+    child:  Dismissible(
+      key:  Key( Random().toString()),
       crossAxisEndOffset: -0.3,
       onResize: () {
         //print("here");
@@ -41,94 +41,88 @@ Positioned cardDemo(
         else
           addImg(img);
       },
-      child: new Transform(
+      child:  Transform(
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
         //transform: null,
-        transform: new Matrix4.skewX(skew),
+        transform:  Matrix4.skewX(skew),
         //..rotateX(-math.pi / rotation),
-        child: new RotationTransition(
-          turns: new AlwaysStoppedAnimation(
+        child:  RotationTransition(
+          turns:  AlwaysStoppedAnimation(
               flag == 0 ? rotation / 360 : -rotation / 360),
-          child: new Hero(
+          child:  Hero(
             tag: "img",
-            child: new GestureDetector(
+            child:  GestureDetector(
               onTap: () {
                 // Navigator.push(
                 //     context,
-                //     new MaterialPageRoute(
-                //         builder: (context) => new DetailPage(type: img)));
-                Navigator.of(context).push(new PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => new DetailPage(type: img),
+                //      MaterialPageRoute(
+                //         builder: (context) =>  DetailPage(type: img)));
+                Navigator.of(context).push( PageRouteBuilder(
+                      pageBuilder: (_, __, ___) =>  DetailPage(type: img),
                     ));
               },
-              child: new Card(
+              child: Card(
                 color: Colors.transparent,
                 elevation: 4.0,
-                child: new Container(
+                child: Container(
                   alignment: Alignment.center,
                   width: screenSize.width / 1.2 + cardWidth,
                   height: screenSize.height / 1.7,
-                  decoration: new BoxDecoration(
+                  decoration: BoxDecoration(
                     color: CARD_GREY,
-                    borderRadius: new BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: new Column(
+                  child:  Column(
                     children: <Widget>[
-                      new Container(
+                       Container(
                         width: screenSize.width / 1.2 + cardWidth,
                         height: screenSize.height / 2.2,
-                        decoration: new BoxDecoration(
-                          borderRadius: new BorderRadius.only(
-                              topLeft: new Radius.circular(8.0),
-                              topRight: new Radius.circular(8.0)),
+                        decoration:  BoxDecoration(
+                          borderRadius:  BorderRadius.only(
+                              topLeft:  Radius.circular(8.0),
+                              topRight:  Radius.circular(8.0)),
                           image: img,
                         ),
                       ),
-                      new Container(
+                       Container(
                           width: screenSize.width / 1.2 + cardWidth,
                           height:
                               screenSize.height / 1.7 - screenSize.height / 2.2,
                           alignment: Alignment.center,
-                          child: new Row(
+                          child:  Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new FlatButton(
-                                  padding: new EdgeInsets.all(0.0),
+                               FlatButton(
+                                  padding:  EdgeInsets.all(0.0),
                                   onPressed: () {
                                     swipeLeft();
                                   },
-                                  child: new Container(
+                                  child:  Container(
                                     height: 60.0,
-                                    width: 130.0,
+                                    width: 80,
                                     alignment: Alignment.center,
-                                    decoration: new BoxDecoration(
+                                    decoration:  BoxDecoration(
                                       color: Colors.red,
                                       borderRadius:
-                                          new BorderRadius.circular(60.0),
+                                           BorderRadius.circular(60.0),
                                     ),
-                                    child: new Text(
-                                      "Nope!",
-                                      style: new TextStyle(color: Colors.white),
-                                    ),
+                                    child: Icon(Icons.thumb_down)
                                   )),
-                              new FlatButton(
-                                  padding: new EdgeInsets.all(0.0),
+                               FlatButton(
+                                  padding:  EdgeInsets.all(0.0),
                                   onPressed: () {
                                     swipeRight();
                                   },
-                                  child: new Container(
-                                    height: 60.0,
-                                    width: 130.0,
+                                  child:  Container(
+                                    height: 60,
+                                    width: 80,
                                     alignment: Alignment.center,
-                                    decoration: new BoxDecoration(
+                                    decoration:  BoxDecoration(
                                       color: GREEN,
                                       borderRadius:
-                                          new BorderRadius.circular(60.0),
+                                           BorderRadius.circular(60.0),
                                     ),
-                                    child: new Text(
-                                      "Let's eat!",
-                                      style: new TextStyle(color: Colors.white),
-                                    ),
+                                    child: Icon(Icons.thumb_up),
                                   ))
                             ],
                           ))

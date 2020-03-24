@@ -28,61 +28,58 @@ Positioned cardDemoDummy(
           color: CARD_GREY,
           borderRadius: new BorderRadius.circular(8.0),
         ),
-        child: new Column(
-          children: <Widget>[
-            new Container(
-              width: screenSize.width / 1.2 + cardWidth,
-              height: screenSize.height / 2.2,
-              decoration: new BoxDecoration(
-                borderRadius: new BorderRadius.only(
-                    topLeft: new Radius.circular(8.0),
-                    topRight: new Radius.circular(8.0)),
-                image: img,
-              ),
-            ),
-            new Container(
-                width: screenSize.width / 1.2 + cardWidth,
-                height: screenSize.height / 1.7 - screenSize.height / 2.2,
-                alignment: Alignment.center,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    new FlatButton(
-                        padding: new EdgeInsets.all(0.0),
-                        onPressed: () {},
-                        child: new Container(
-                          height: 60.0,
-                          width: 130.0,
+        child: Column(
+                    children: <Widget>[
+                       Container(
+                        width: screenSize.width / 1.2 + cardWidth,
+                        height: screenSize.height / 2.2,
+                        decoration:  BoxDecoration(
+                          borderRadius:  BorderRadius.only(
+                              topLeft:  Radius.circular(8.0),
+                              topRight:  Radius.circular(8.0)),
+                          image: img,
+                        ),
+                      ),
+                       Container(
+                          width: screenSize.width / 1.2 + cardWidth,
+                          height:
+                              screenSize.height / 1.7 - screenSize.height / 2.2,
                           alignment: Alignment.center,
-                          decoration: new BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: new BorderRadius.circular(60.0),
-                          ),
-                          child: new Text(
-                            "DON'T",
-                            style: new TextStyle(color: Colors.white),
-                          ),
-                        )),
-                    new FlatButton(
-                        padding: new EdgeInsets.all(0.0),
-                        onPressed: () {},
-                        child: new Container(
-                          height: 60.0,
-                          width: 130.0,
-                          alignment: Alignment.center,
-                          decoration: new BoxDecoration(
-                            color: Colors.cyan,
-                            borderRadius: new BorderRadius.circular(60.0),
-                          ),
-                          child: new Text(
-                            "I'M IN",
-                            style: new TextStyle(color: Colors.white),
-                          ),
-                        ))
-                  ],
-                ))
-          ],
-        ),
+                          child:  Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                               FlatButton(
+                                  padding:  EdgeInsets.all(0.0),
+                                  onPressed: () {},
+                                  child:  Container(
+                                    height: 60.0,
+                                    width: 80,
+                                    alignment: Alignment.center,
+                                    decoration:  BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius:
+                                           BorderRadius.circular(60.0),
+                                    ),
+                                    child: Icon(Icons.thumb_down)
+                                  )),
+                               FlatButton(
+                                  padding:  EdgeInsets.all(0.0),
+                                  onPressed: () {},
+                                  child:  Container(
+                                    height: 60,
+                                    width: 80,
+                                    alignment: Alignment.center,
+                                    decoration:  BoxDecoration(
+                                      color: GREEN,
+                                      borderRadius:
+                                           BorderRadius.circular(60.0),
+                                    ),
+                                    child: Icon(Icons.thumb_up),
+                                  ))
+                            ],
+                          ))
+                    ],
+                  ),
       ),
     ),
   );
