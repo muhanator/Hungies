@@ -18,7 +18,6 @@ Positioned cardDemo(
     Function swipeRight,
     Function swipeLeft) {
   Size screenSize = MediaQuery.of(context).size;
-  // print("Card");
   return  Positioned(
     bottom: 100.0 + bottom,
     right: flag == 0 ? right != 0.0 ? right : null : null,
@@ -35,7 +34,6 @@ Positioned cardDemo(
         // });
       },
       onDismissed: (DismissDirection direction) {
-//          _swipeAnimation();
         if (direction == DismissDirection.endToStart)
           dismissImg(img);
         else
@@ -43,9 +41,7 @@ Positioned cardDemo(
       },
       child:  Transform(
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
-        //transform: null,
         transform:  Matrix4.skewX(skew),
-        //..rotateX(-math.pi / rotation),
         child:  RotationTransition(
           turns:  AlwaysStoppedAnimation(
               flag == 0 ? rotation / 360 : -rotation / 360),
@@ -53,15 +49,14 @@ Positioned cardDemo(
             tag: "img",
             child:  GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //      MaterialPageRoute(
-                //         builder: (context) =>  DetailPage(type: img)));
                 Navigator.of(context).push( PageRouteBuilder(
                       pageBuilder: (_, __, ___) =>  DetailPage(type: img),
                     ));
               },
               child: Card(
+                shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                     ),
                 color: Colors.transparent,
                 elevation: 4.0,
                 child: Container(
@@ -102,11 +97,11 @@ Positioned cardDemo(
                                     width: 80,
                                     alignment: Alignment.center,
                                     decoration:  BoxDecoration(
-                                      color: Colors.red,
+                                      color: CARD_GREY,
                                       borderRadius:
                                            BorderRadius.circular(60.0),
                                     ),
-                                    child: Icon(Icons.thumb_down)
+                                    child: Icon(Icons.thumb_down, color: Colors.red,)
                                   )),
                                FlatButton(
                                   padding:  EdgeInsets.all(0.0),
@@ -118,11 +113,11 @@ Positioned cardDemo(
                                     width: 80,
                                     alignment: Alignment.center,
                                     decoration:  BoxDecoration(
-                                      color: GREEN,
+                                      color: CARD_GREY,
                                       borderRadius:
                                            BorderRadius.circular(60.0),
                                     ),
-                                    child: Icon(Icons.thumb_up),
+                                    child: Icon(Icons.thumb_up, color: GREEN,),
                                   ))
                             ],
                           ))

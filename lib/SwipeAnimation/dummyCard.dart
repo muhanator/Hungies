@@ -18,6 +18,9 @@ Positioned cardDemoDummy(
     // right: flag == 0 ? right != 0.0 ? right : null : null,
     //left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Card(
+      shape:RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                     ),
       color: Colors.transparent,
       elevation: 4.0,
       child: new Container(
@@ -56,25 +59,25 @@ Positioned cardDemoDummy(
                                     width: 80,
                                     alignment: Alignment.center,
                                     decoration:  BoxDecoration(
-                                      color: Colors.red,
+                                      color: CARD_GREY,
                                       borderRadius:
                                            BorderRadius.circular(60.0),
                                     ),
-                                    child: Icon(Icons.thumb_down)
+                                    child: Icon(Icons.thumb_down, color: Colors.red,)
                                   )),
                                FlatButton(
                                   padding:  EdgeInsets.all(0.0),
                                   onPressed: () {},
-                                  child:  Container(
+                                  child: Container(
                                     height: 60,
                                     width: 80,
                                     alignment: Alignment.center,
                                     decoration:  BoxDecoration(
-                                      color: GREEN,
+                                      color: CARD_GREY,
                                       borderRadius:
                                            BorderRadius.circular(60.0),
                                     ),
-                                    child: Icon(Icons.thumb_up),
+                                    child: Icon(Icons.thumb_up, color: GREEN,),
                                   ))
                             ],
                           ))
