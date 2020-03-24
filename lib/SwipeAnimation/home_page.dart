@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:hungies/SwipeAnimation/dummyCard.dart';
+import 'package:hungies/constants.dart';
 import 'activeCard.dart';
 import 'data.dart';
 
@@ -127,13 +128,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return (new Scaffold(
         appBar: new AppBar(
           elevation: 0.0,
-          backgroundColor: new Color.fromRGBO(106, 94, 175, 1.0),
+          backgroundColor: DARK_GREY,
           centerTitle: true,
           leading: new Container(
             margin: const EdgeInsets.all(15.0),
             child: new Icon(
               Icons.equalizer,
-              color: Colors.cyan,
+              color: GREEN,
               size: 30.0,
             ),
           ),
@@ -149,7 +150,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   margin: const EdgeInsets.all(15.0),
                   child: new Icon(
                     Icons.search,
-                    color: Colors.cyan,
+                    color: GREEN,
                     size: 30.0,
                   )),
             ),
@@ -158,29 +159,18 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
-                "EVENTS",
+                "Hungies",
                 style: new TextStyle(
-                    fontSize: 12.0,
-                    letterSpacing: 3.5,
+                    fontSize: 20,
+                    color: GREEN,
+                    letterSpacing: 3,
                     fontWeight: FontWeight.bold),
-              ),
-              new Container(
-                width: 15.0,
-                height: 15.0,
-                margin: new EdgeInsets.only(bottom: 20.0),
-                alignment: Alignment.center,
-                child: new Text(
-                  dataLength.toString(),
-                  style: new TextStyle(fontSize: 10.0),
-                ),
-                decoration: new BoxDecoration(
-                    color: Colors.red, shape: BoxShape.circle),
               )
             ],
           ),
         ),
         body: new Container(
-          color: new Color.fromRGBO(106, 94, 175, 1.0),
+          color: DARK_GREY,
           alignment: Alignment.center,
           child: dataLength > 0
               ? new Stack(
