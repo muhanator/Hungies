@@ -8,14 +8,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hungies',
-      // showPerformanceOverlay: true,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      // home: new PageMain(),
       home: HomePage(),
-      //home: BottomNavigationDemo(),
-      // home:new exp(),
     );
   }
 }
