@@ -1,2 +1,2 @@
 # Hungies
-A SOEN 35 Flutter project.
+A SOEN 357 Flutter project.
