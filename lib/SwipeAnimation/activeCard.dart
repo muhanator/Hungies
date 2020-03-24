@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hungies/SwipeAnimation/detail.dart';
+import 'package:hungies/constants.dart';
 
 Positioned cardDemo(
     DecorationImage img,
@@ -68,7 +69,7 @@ Positioned cardDemo(
                   width: screenSize.width / 1.2 + cardWidth,
                   height: screenSize.height / 1.7,
                   decoration: new BoxDecoration(
-                    color: new Color.fromRGBO(121, 114, 173, 1.0),
+                    color: CARD_GREY,
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   child: new Column(
@@ -106,7 +107,7 @@ Positioned cardDemo(
                                           new BorderRadius.circular(60.0),
                                     ),
                                     child: new Text(
-                                      "DON'T",
+                                      "Nope!",
                                       style: new TextStyle(color: Colors.white),
                                     ),
                                   )),
@@ -120,12 +121,12 @@ Positioned cardDemo(
                                     width: 130.0,
                                     alignment: Alignment.center,
                                     decoration: new BoxDecoration(
-                                      color: Colors.cyan,
+                                      color: GREEN,
                                       borderRadius:
                                           new BorderRadius.circular(60.0),
                                     ),
                                     child: new Text(
-                                      "I'M IN",
+                                      "Let's eat!",
                                       style: new TextStyle(color: Colors.white),
                                     ),
                                   ))

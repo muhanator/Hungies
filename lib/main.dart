@@ -9,9 +9,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hungies',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
       home: HomePage(),
     );
   }

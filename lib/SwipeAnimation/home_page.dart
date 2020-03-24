@@ -127,29 +127,26 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     double backCardWidth = -10.0;
     return (new Scaffold(
         appBar: new AppBar(
+          brightness: Brightness.dark,
           elevation: 0.0,
           backgroundColor: DARK_GREY,
           centerTitle: true,
           leading: new Container(
             margin: const EdgeInsets.all(15.0),
             child: new Icon(
-              Icons.equalizer,
+              Icons.message,
               color: GREEN,
-              size: 30.0,
+              size:25.0,
             ),
           ),
           actions: <Widget>[
             new GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //     new MaterialPageRoute(
-                //         builder: (context) => new PageMain()));
               },
               child: new Container(
                   margin: const EdgeInsets.all(15.0),
                   child: new Icon(
-                    Icons.search,
+                    Icons.account_circle,
                     color: GREEN,
                     size: 30.0,
                   )),
@@ -163,7 +160,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 style: new TextStyle(
                     fontSize: 20,
                     color: GREEN,
-                    letterSpacing: 3,
+                    letterSpacing: 2,
                     fontWeight: FontWeight.bold),
               )
             ],
@@ -199,7 +196,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           backCardWidth, 0.0, 0.0, context);
                     }
                   }).toList())
-              : new Text("No Event Left",
+              : new Text("No restaurants left in to area",
                   style: new TextStyle(color: Colors.white, fontSize: 50.0)),
         )));
   }
