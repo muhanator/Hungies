@@ -1,7 +1,9 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:hungies/views/detail.dart';
 import 'package:hungies/constants.dart';
 
-Positioned cardDemoDummy(
+Positioned PrimaryCard(
     DecorationImage img,
     double bottom,
     double right,
@@ -9,29 +11,63 @@ Positioned cardDemoDummy(
     double cardWidth,
     double rotation,
     double skew,
-    BuildContext context) {
+    BuildContext context,
+    Function dismissImg,
+    int flag,
+    Function addImg,
+    Function swipeRight,
+    Function swipeLeft) {
   Size screenSize = MediaQuery.of(context).size;
-  // Size screenSize=(500.0,200.0);
-  // print("dummyCard");
-  return new Positioned(
+  return  Positioned(
     bottom: 100.0 + bottom,
-    // right: flag == 0 ? right != 0.0 ? right : null : null,
-    //left: flag == 1 ? right != 0.0 ? right : null : null,
-    child: new Card(
-      shape:RoundedRectangleBorder(
+    right: flag == 0 ? right != 0.0 ? right : null : null,
+    left: flag == 1 ? right != 0.0 ? right : null : null,
+    child:  Dismissible(
+      key:  Key( Random().toString()),
+      crossAxisEndOffset: -0.3,
+      onResize: () {
+        //print("here");
+        // setState(() {
+        //   var i = data.removeLast();
+
+        //   data.insert(0, i);
+        // });
+      },
+      onDismissed: (DismissDirection direction) {
+        if (direction == DismissDirection.endToStart)
+          dismissImg(img);
+        else
+          addImg(img);
+      },
+      child:  Transform(
+        alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
+        transform:  Matrix4.skewX(skew),
+        child:  RotationTransition(
+          turns:  AlwaysStoppedAnimation(
+              flag == 0 ? rotation / 360 : -rotation / 360),
+          child:  Hero(
+            tag: "img",
+            child:  GestureDetector(
+              onTap: () {
+                Navigator.of(context).push( PageRouteBuilder(
+                      pageBuilder: (_, __, ___) =>  DetailPage(type: img),
+                    ));
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                      ),
-      color: Colors.transparent,
-      elevation: 4.0,
-      child: new Container(
-        alignment: Alignment.center,
-        width: screenSize.width / 1.2 + cardWidth,
-        height: screenSize.height / 1.7,
-        decoration: new BoxDecoration(
-          color: CARD_GREY,
-          borderRadius: new BorderRadius.circular(8.0),
-        ),
-        child: Column(
+                color: Colors.transparent,
+                elevation: 4.0,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: screenSize.width / 1.2 + cardWidth,
+                  height: screenSize.height / 1.7,
+                  decoration: BoxDecoration(
+                    color: CARD_GREY,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child:  Column(
                     children: <Widget>[
                        Container(
                         width: screenSize.width / 1.2 + cardWidth,
@@ -53,7 +89,9 @@ Positioned cardDemoDummy(
                             children: <Widget>[
                                FlatButton(
                                   padding:  EdgeInsets.all(0.0),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    swipeLeft();
+                                  },
                                   child:  Container(
                                     height: 60.0,
                                     width: 80,
@@ -67,8 +105,10 @@ Positioned cardDemoDummy(
                                   )),
                                FlatButton(
                                   padding:  EdgeInsets.all(0.0),
-                                  onPressed: () {},
-                                  child: Container(
+                                  onPressed: () {
+                                    swipeRight();
+                                  },
+                                  child:  Container(
                                     height: 60,
                                     width: 80,
                                     alignment: Alignment.center,
@@ -83,6 +123,11 @@ Positioned cardDemoDummy(
                           ))
                     ],
                   ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     ),
   );

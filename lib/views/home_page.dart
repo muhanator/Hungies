@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:hungies/SwipeAnimation/dummyCard.dart';
+import 'package:hungies/widgets/secondary_card.dart';
 import 'package:hungies/constants.dart';
-import 'activeCard.dart';
-import 'data.dart';
+import '../widgets/primary_card.dart';
+import '../data.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  HomePageState createState() => new HomePageState();
+  HomePageState createState() =>  HomePageState();
 }
 
 class HomePageState extends State<HomePage> with TickerProviderStateMixin {
@@ -24,14 +24,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _buttonController = new AnimationController(
-        duration: new Duration(milliseconds: 1000), vsync: this);
+    _buttonController =  AnimationController(
+        duration:  Duration(milliseconds: 1000), vsync: this);
 
-    rotate = new Tween<double>(
+    rotate =  Tween<double>(
       begin: -0.0,
       end: -40.0,
     ).animate(
-      new CurvedAnimation(
+       CurvedAnimation(
         parent: _buttonController,
         curve: Curves.ease,
       ),
@@ -47,29 +47,29 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       });
     });
 
-    right = new Tween<double>(
+    right =  Tween<double>(
       begin: 0.0,
       end: 400.0,
     ).animate(
-      new CurvedAnimation(
+       CurvedAnimation(
         parent: _buttonController,
         curve: Curves.ease,
       ),
     );
-    bottom = new Tween<double>(
+    bottom =  Tween<double>(
       begin: 15.0,
       end: 100.0,
     ).animate(
-      new CurvedAnimation(
+       CurvedAnimation(
         parent: _buttonController,
         curve: Curves.ease,
       ),
     );
-    width = new Tween<double>(
+    width =  Tween<double>(
       begin: 20.0,
       end: 25.0,
     ).animate(
-      new CurvedAnimation(
+       CurvedAnimation(
         parent: _buttonController,
         curve: Curves.bounceOut,
       ),
@@ -125,39 +125,39 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     var dataLength = data.length;
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
-    return (new Scaffold(
-        appBar: new AppBar(
+    return  Scaffold(
+        appBar:  AppBar(
           brightness: Brightness.dark,
           elevation: 0.0,
           backgroundColor: DARK_GREY,
           centerTitle: true,
-          leading: new Container(
+          leading:  Container(
             margin: const EdgeInsets.all(15.0),
-            child: new Icon(
+            child:  Icon(
               Icons.message,
               color: GREEN,
               size:25.0,
             ),
           ),
           actions: <Widget>[
-            new GestureDetector(
+             GestureDetector(
               onTap: () {
               },
-              child: new Container(
+              child:  Container(
                   margin: const EdgeInsets.all(15.0),
-                  child: new Icon(
+                  child:  Icon(
                     Icons.account_circle,
                     color: GREEN,
                     size: 30.0,
                   )),
             ),
           ],
-          title: new Row(
+          title:  Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new Text(
+               Text(
                 "Hungies",
-                style: new TextStyle(
+                style:  TextStyle(
                     fontSize: 20,
                     color: GREEN,
                     letterSpacing: 2,
@@ -166,15 +166,15 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ],
           ),
         ),
-        body: new Container(
+        body:  Container(
           color: DARK_GREY,
           alignment: Alignment.center,
           child: dataLength > 0
-              ? new Stack(
+              ?  Stack(
                   alignment: AlignmentDirectional.center,
                   children: data.map((item) {
                     if (data.indexOf(item) == dataLength - 1) {
-                      return cardDemo(
+                      return PrimaryCard(
                           item,
                           bottom.value,
                           right.value,
@@ -192,12 +192,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       backCardPosition = backCardPosition - 10;
                       backCardWidth = backCardWidth + 10;
 
-                      return cardDemoDummy(item, backCardPosition, 0.0, 0.0,
+                      return SecondaryCard(item, backCardPosition, 0.0, 0.0,
                           backCardWidth, 0.0, 0.0, context);
                     }
                   }).toList())
-              : new Text("No restaurants left in to area",
-                  style: new TextStyle(color: Colors.white, fontSize: 50.0)),
-        )));
+              :  Text("No restaurants left in to area",
+                  style:  TextStyle(color: Colors.white, fontSize: 50.0)),
+        ));
   }
 }

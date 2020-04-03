@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hungies/SwipeAnimation/home_page.dart';
+import 'package:hungies/views/home_page.dart';
 
 void main() => runApp(new MyApp());
 
