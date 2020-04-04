@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hungies/constants.dart';
+import 'package:hungies/widgets/panel.dart';
 
 class Map extends StatefulWidget {
   @override
@@ -21,6 +22,8 @@ class _MapState extends State<Map> {
     super.initState();
     List<LatLng> latlngPoints = new List();
     latlngPoints.add(LatLng(45.497044, -73.578439));
+    latlngPoints.add(LatLng(45.496380, -73.5790079));
+    latlngPoints.add(LatLng(45.496053, -73.579233));
     latlngPoints.add(LatLng(45.495705, -73.579329));
     latlngPoints.add(LatLng(45.495059, -73.577913));
     latlngPoints.add(destination);
@@ -42,56 +45,61 @@ class _MapState extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-            child: GoogleMap(
-              mapType: MapType.normal,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: false,
-              mapToolbarEnabled: false,
-              compassEnabled: true,
-              indoorViewEnabled: true,
-              polylines: polylines,
-              markers: markers,
-              initialCameraPosition: CameraPosition(
-                  target: LatLng(45.4977298, -73.579034), zoom: 18),
-              onMapCreated: (GoogleMapController controller) {
-                _completer.complete(controller);
-              },
-            )),
-        Positioned(
-          bottom: MediaQuery
-              .of(context)
-              .padding
-              .bottom + 16,
-          right: MediaQuery
-              .of(context)
-              .padding
-              .right + 16,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                FloatingActionButton(
-                  heroTag: 'location',
-                  onPressed: () {},
-                  backgroundColor: Colors.white,
-                  foregroundColor: PRIMARY_COLOR,
-                  child: Icon(Icons.my_location),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: PRIMARY_COLOR,
-                  foregroundColor: Colors.white,
-                  child: Icon(Icons.directions),
-                ),
-              ]),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(title: new Text("Heading to 3 amigos"),
+        backgroundColor: PRIMARY_COLOR),
+      body: Stack(
+        children: <Widget>[
+          Container(
+              child: GoogleMap(
+                mapType: MapType.normal,
+                myLocationEnabled: true,
+                myLocationButtonEnabled: false,
+                mapToolbarEnabled: false,
+                compassEnabled: true,
+                indoorViewEnabled: true,
+                polylines: polylines,
+                markers: markers,
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(45.4977298, -73.579034), zoom: 17),
+                onMapCreated: (GoogleMapController controller) {
+                  _completer.complete(controller);
+                },
+              )),
+          Positioned(
+            bottom: MediaQuery
+                .of(context)
+                .padding
+                .bottom + 16,
+            right: MediaQuery
+                .of(context)
+                .padding
+                .right + 16,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  FloatingActionButton(
+                    heroTag: 'location',
+                    onPressed: () {},
+                    backgroundColor: Colors.white,
+                    foregroundColor: PRIMARY_COLOR,
+                    child: Icon(Icons.my_location),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: PRIMARY_COLOR,
+                    foregroundColor: Colors.white,
+                    child: Icon(Icons.directions),
+                  ),
+                ]),
+          ),
+          Panel()
+        ],
+      ),
     );
   }
 }

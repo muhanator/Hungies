@@ -133,11 +133,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return  Scaffold(
         appBar:  AppBar(
           brightness: Brightness.dark,
-          elevation: 0.0,
           backgroundColor: DARK_GREY,
           centerTitle: true,
           leading:  Container(
-            margin: const EdgeInsets.all(15.0),
+            margin: const EdgeInsets.all(12.0),
             child:  Icon(
               Icons.message,
               color: PRIMARY_COLOR,
@@ -146,10 +145,9 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           actions: <Widget>[
              GestureDetector(
-              onTap: () {
-              },
+              onTap: () {},
               child:  Container(
-                  margin: const EdgeInsets.all(15.0),
+                  margin: const EdgeInsets.all(12.0),
                   child:  Icon(
                     Icons.account_circle,
                     color: PRIMARY_COLOR,
