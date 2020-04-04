@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:hungies/widgets/map.dart';
 import 'package:hungies/widgets/secondary_card.dart';
 import 'package:hungies/constants.dart';
 import '../widgets/primary_card.dart';
@@ -107,6 +108,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         flag = 1;
       });
     _swipeAnimation();
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Map()));
   }
 
   swipeLeft() {
@@ -135,7 +140,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             margin: const EdgeInsets.all(15.0),
             child:  Icon(
               Icons.message,
-              color: GREEN,
+              color: PRIMARY_COLOR,
               size:25.0,
             ),
           ),
@@ -147,7 +152,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   margin: const EdgeInsets.all(15.0),
                   child:  Icon(
                     Icons.account_circle,
-                    color: GREEN,
+                    color: PRIMARY_COLOR,
                     size: 30.0,
                   )),
             ),
@@ -159,7 +164,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 "Hungies",
                 style:  TextStyle(
                     fontSize: 20,
-                    color: GREEN,
+                    color: PRIMARY_COLOR,
                     letterSpacing: 2,
                     fontWeight: FontWeight.bold),
               )

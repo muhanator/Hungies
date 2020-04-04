@@ -73,7 +73,7 @@ Positioned SecondaryCard(
                                       borderRadius:
                                            BorderRadius.circular(60.0),
                                     ),
-                                    child: Icon(Icons.thumb_up, color: GREEN,),
+                                    child: Icon(Icons.thumb_up, color: PRIMARY_COLOR,),
                                   ))
                             ],
                           ))
