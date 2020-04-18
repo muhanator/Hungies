@@ -34,8 +34,11 @@ class _MapState extends State<Map> {
       color: PRIMARY_COLOR,
       width: 5,
     ));
-    
-    markers.add(Marker(markerId: MarkerId("start"), position: destination, infoWindow: InfoWindow(title: "3 amigos")));
+
+    markers.add(Marker(
+        markerId: MarkerId("start"),
+        position: destination,
+        infoWindow: InfoWindow(title: "3 amigos")));
   }
 
   @override
@@ -46,35 +49,30 @@ class _MapState extends State<Map> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: new Text("Heading to 3 amigos"),
-        backgroundColor: PRIMARY_COLOR),
+      appBar: AppBar(
+          title: new Text("Heading to 3 amigos"),
+          backgroundColor: PRIMARY_COLOR),
       body: Stack(
         children: <Widget>[
           Container(
               child: GoogleMap(
-                mapType: MapType.normal,
-                myLocationEnabled: true,
-                myLocationButtonEnabled: false,
-                mapToolbarEnabled: false,
-                compassEnabled: true,
-                indoorViewEnabled: true,
-                polylines: polylines,
-                markers: markers,
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(45.4977298, -73.579034), zoom: 17),
-                onMapCreated: (GoogleMapController controller) {
-                  _completer.complete(controller);
-                },
-              )),
+            mapType: MapType.normal,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            mapToolbarEnabled: false,
+            compassEnabled: true,
+            indoorViewEnabled: true,
+            polylines: polylines,
+            markers: markers,
+            initialCameraPosition: CameraPosition(
+                target: LatLng(45.4977298, -73.579034), zoom: 17),
+            onMapCreated: (GoogleMapController controller) {
+              _completer.complete(controller);
+            },
+          )),
           Positioned(
-            bottom: MediaQuery
-                .of(context)
-                .padding
-                .bottom + 16,
-            right: MediaQuery
-                .of(context)
-                .padding
-                .right + 16,
+            bottom: MediaQuery.of(context).padding.bottom + 16,
+            right: MediaQuery.of(context).padding.right + 16,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -103,5 +101,3 @@ class _MapState extends State<Map> {
     );
   }
 }
-
-

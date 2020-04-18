@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:hungies/data.dart';
-import 'package:hungies/styles.dart';
+import 'package:hungies/images.dart';
 
 class DetailPage extends StatefulWidget {
   final DecorationImage type;

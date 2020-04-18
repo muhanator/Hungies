@@ -1,4 +1,3 @@
-
-import 'package:hungies/styles.dart';
+import 'package:hungies/images.dart';
 
 List imageData = [image5, image3, image4, image2, image1];
