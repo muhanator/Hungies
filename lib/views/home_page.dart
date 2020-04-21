@@ -179,10 +179,13 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           onResize: () {
                           },
                           onDismissed: (DismissDirection direction) {
-                            if (direction == DismissDirection.endToStart)
+                            if (direction == DismissDirection.endToStart) {
                               dismissImg(item);
-                            else
+                            }
+                            else {
                               addImg(item);
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
+                            }
                           },
                           child: Transform(
                             alignment: booleanFlag == 0
