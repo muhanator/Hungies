@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:hungies/constants.dart';
 import 'package:hungies/data.dart';
 import 'package:hungies/images.dart';
 
@@ -7,7 +8,7 @@ class DetailPage extends StatefulWidget {
   final DecorationImage type;
   const DetailPage({Key key, this.type}) : super(key: key);
   @override
-  _DetailPageState createState() => new _DetailPageState(type: type);
+  _DetailPageState createState() =>  _DetailPageState(type: type);
 }
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
@@ -18,28 +19,28 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   Animation<double> heigth;
   DecorationImage type;
   _DetailPageState({this.type});
-  List data = imageData;
+  List data = restaurantImages;
   double _appBarHeight = 256.0;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   void initState() {
-    _containerController = new AnimationController(
-        duration: new Duration(milliseconds: 2000), vsync: this);
+    _containerController =  AnimationController(
+        duration:  Duration(milliseconds: 2000), vsync: this);
     super.initState();
-    width = new Tween<double>(
+    width =  Tween<double>(
       begin: 200.0,
       end: 220.0,
     ).animate(
-      new CurvedAnimation(
+       CurvedAnimation(
         parent: _containerController,
         curve: Curves.ease,
       ),
     );
-    heigth = new Tween<double>(
+    heigth =  Tween<double>(
       begin: 400.0,
       end: 400.0,
     ).animate(
-      new CurvedAnimation(
+       CurvedAnimation(
         parent: _containerController,
         curve: Curves.ease,
       ),
@@ -60,47 +61,45 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 0.7;
     int img = data.indexOf(type);
-    //print("detail");
-    return new Theme(
-      data: new ThemeData(
+    return  Theme(
+      data:  ThemeData(
         brightness: Brightness.light,
-        primaryColor: const Color.fromRGBO(106, 94, 175, 1.0),
+        primaryColor: DARK_GREY,
         platform: Theme.of(context).platform,
       ),
-      child: new Container(
+      child:  Container(
         width: width.value,
         height: heigth.value,
-        color: const Color.fromRGBO(106, 94, 175, 1.0),
+        color: CARD_GREY,
         child: new Hero(
           tag: "img",
           child: new Card(
             color: Colors.transparent,
-            child: new Container(
+            child:  Container(
               alignment: Alignment.center,
               width: width.value,
               height: heigth.value,
-              decoration: new BoxDecoration(
-                color: Colors.white,
-                borderRadius: new BorderRadius.circular(10.0),
+              decoration:  BoxDecoration(
+                color: CARD_GREY,
+                borderRadius:  BorderRadius.circular(10.0),
               ),
-              child: new Stack(
+              child:  Stack(
                 alignment: AlignmentDirectional.bottomCenter,
                 children: <Widget>[
-                  new CustomScrollView(
+                   CustomScrollView(
                     shrinkWrap: false,
                     slivers: <Widget>[
-                      new SliverAppBar(
+                       SliverAppBar(
                         elevation: 0.0,
                         forceElevated: true,
-                        leading: new IconButton(
+                        leading:  IconButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          icon: new Icon(
+                          icon:  Icon(
                             Icons.arrow_back,
-                            color: Colors.cyan,
+                            color: PRIMARY_COLOR,
                             size: 30.0,
                           ),
                         ),
@@ -109,15 +108,15 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                         floating: _appBarBehavior == AppBarBehavior.floating ||
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
-                        flexibleSpace: new FlexibleSpaceBar(
-                          title: new Text("Party"),
-                          background: new Stack(
+                        flexibleSpace:  FlexibleSpaceBar(
+                          title:  Text("Party"),
+                          background:  Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
-                              new Container(
+                               Container(
                                 width: width.value,
                                 height: _appBarHeight,
-                                decoration: new BoxDecoration(
+                                decoration:  BoxDecoration(
                                   image: data[img],
                                 ),
                               ),
@@ -125,117 +124,69 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      new SliverList(
-                        delegate: new SliverChildListDelegate(<Widget>[
-                          new Container(
-                            color: Colors.white,
-                            child: new Padding(
+                       SliverList(
+                        delegate:  SliverChildListDelegate(<Widget>[
+                           Container(
+                            color: CARD_GREY,
+                            child:  Padding(
                               padding: const EdgeInsets.all(35.0),
-                              child: new Column(
+                              child:  Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  new Container(
-                                    padding: new EdgeInsets.only(bottom: 20.0),
+                                   Container(
+                                    padding:  EdgeInsets.only(bottom: 20.0),
                                     alignment: Alignment.center,
-                                    decoration: new BoxDecoration(
-                                        color: Colors.white,
-                                        border: new Border(
-                                            bottom: new BorderSide(
+                                    decoration:  BoxDecoration(
+                                        color: CARD_GREY,
+                                        border:  Border(
+                                            bottom:  BorderSide(
                                                 color: Colors.black12))),
-                                    child: new Row(
+                                    child:  Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
-                                        new Row(
+                                         Row(
                                           children: <Widget>[
-                                            new Icon(
+                                             Icon(
                                               Icons.access_time,
                                               color: Colors.cyan,
                                             ),
-                                            new Padding(
+                                             Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("10:00  AM"),
+                                              child:  Text("10:00  AM"),
                                             )
                                           ],
                                         ),
-                                        new Row(
+                                         Row(
                                           children: <Widget>[
-                                            new Icon(
+                                             Icon(
                                               Icons.map,
                                               color: Colors.cyan,
                                             ),
-                                            new Padding(
+                                             Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("15 MILES"),
+                                              child:  Text("700 m"),
                                             )
                                           ],
                                         ),
                                       ],
                                     ),
                                   ),
-                                  new Padding(
+                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 16.0, bottom: 8.0),
-                                    child: new Text(
+                                    child:  Text(
                                       "ABOUT",
-                                      style: new TextStyle(
+                                      style:  TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  new Text(
-                                      "It's party, party, party like a nigga just got out of jail Flyin' in my 'Rari like a bat that just flew outta hell I'm from the east of ATL, but ballin' in the Cali hills Lil mama booty boomin', that bitch movin' and she standin' still I know these bitches choosin' me, but I got 80 on me still. host for the purposes of socializing, conversation, recreation, or as part of a festival or other commemoration of a special occasion. A party will typically feature food and beverages, and often music and dancing or other forms of entertainment.  "),
-                                  new Container(
-                                    margin: new EdgeInsets.only(top: 25.0),
-                                    padding: new EdgeInsets.only(
-                                        top: 5.0, bottom: 10.0),
-                                    height: 120.0,
-                                    decoration: new BoxDecoration(
-                                        color: Colors.white,
-                                        border: new Border(
-                                            top: new BorderSide(
-                                                color: Colors.black12))),
-                                    child: new Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        new Text(
-                                          "ATTENDEES",
-                                          style: new TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        new Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            new CircleAvatar(
-                                                backgroundImage: avatar1),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar2,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar3,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar4,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar5,
-                                            ),
-                                            new CircleAvatar(
-                                              backgroundImage: avatar6,
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  new Container(
+                                   Text(
+                                      "3 amigos is a place where you may find mexican style cuisine. "
+                                          "It offers fine sit-down dining as well as take-out with a variety of dessert and drinks"),
+                                   Container(
                                     height: 100.0,
                                   )
                                 ],
@@ -246,46 +197,46 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-                  new Container(
+                   Container(
                       width: 600.0,
                       height: 80.0,
-                      decoration: new BoxDecoration(
-                        color: new Color.fromRGBO(121, 114, 173, 1.0),
+                      decoration:  BoxDecoration(
+                        color:  Color.fromRGBO(121, 114, 173, 1.0),
                       ),
                       alignment: Alignment.center,
-                      child: new Row(
+                      child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          new FlatButton(
-                              padding: new EdgeInsets.all(0.0),
+                           FlatButton(
+                              padding:  EdgeInsets.all(0.0),
                               onPressed: () {},
-                              child: new Container(
+                              child:  Container(
                                 height: 60.0,
                                 width: 130.0,
                                 alignment: Alignment.center,
-                                decoration: new BoxDecoration(
+                                decoration:  BoxDecoration(
                                   color: Colors.red,
-                                  borderRadius: new BorderRadius.circular(60.0),
+                                  borderRadius:  BorderRadius.circular(60.0),
                                 ),
-                                child: new Text(
+                                child:  Text(
                                   "DON'T",
-                                  style: new TextStyle(color: Colors.white),
+                                  style:  TextStyle(color: Colors.white),
                                 ),
                               )),
-                          new FlatButton(
-                              padding: new EdgeInsets.all(0.0),
+                           FlatButton(
+                              padding:  EdgeInsets.all(0.0),
                               onPressed: () {},
-                              child: new Container(
+                              child:  Container(
                                 height: 60.0,
                                 width: 130.0,
                                 alignment: Alignment.center,
-                                decoration: new BoxDecoration(
+                                decoration:  BoxDecoration(
                                   color: Colors.cyan,
-                                  borderRadius: new BorderRadius.circular(60.0),
+                                  borderRadius:  BorderRadius.circular(60.0),
                                 ),
-                                child: new Text(
+                                child:  Text(
                                   "I'M IN",
-                                  style: new TextStyle(color: Colors.white),
+                                  style:  TextStyle(color: Colors.white),
                                 ),
                               ))
                         ],

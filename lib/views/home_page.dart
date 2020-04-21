@@ -19,8 +19,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Animation<double> bottom;
   int booleanFlag = 0;
 
-  List data = imageData;
-  List selectedData = [];
+  List currentRestaurant = restaurantImages;
+  List selectedRestaurant = [];
   void initState() {
     super.initState();
 
@@ -33,14 +33,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _buttonController,
-        curve: Curves.ease,
+        curve: Curves.bounceInOut,
       ),
     );
     rotate.addListener(() {
       setState(() {
         if (rotate.isCompleted) {
-          var i = data.removeLast();
-          data.insert(0, i);
+          var i = currentRestaurant.removeLast();
+          currentRestaurant.insert(0, i);
 
           _buttonController.reset();
         }
@@ -53,7 +53,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _buttonController,
-        curve: Curves.ease,
+        curve: Curves.bounceInOut,
       ),
     );
     bottom = Tween<double>(
@@ -62,7 +62,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _buttonController,
-        curve: Curves.ease,
+        curve: Curves.bounceInOut,
       ),
     );
   }
@@ -81,14 +81,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   dismissImg(DecorationImage img) {
     setState(() {
-      data.remove(img);
+      currentRestaurant.remove(img);
     });
   }
 
   addImg(DecorationImage img) {
     setState(() {
-      data.remove(img);
-      selectedData.add(img);
+      currentRestaurant.remove(img);
+      selectedRestaurant.add(img);
     });
   }
 
@@ -114,7 +114,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     timeDilation = 0.4;
 
     double initialBottom = 15.0;
-    var dataLength = data.length;
+    var dataLength = currentRestaurant.length;
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return Scaffold(
@@ -162,8 +162,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: dataLength > 0
               ? Stack(
                   alignment: AlignmentDirectional.center,
-                  children: data.map((item) {
-                    if (data.indexOf(item) == dataLength - 1) {
+                  children: currentRestaurant.map((item) {
+                    if (currentRestaurant.indexOf(item) == dataLength - 1) {
                       Size screenSize = MediaQuery.of(context).size;
                       return Positioned(
                         bottom: 100.0 + bottom.value,
@@ -177,12 +177,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           key: Key(Random().toString()),
                           crossAxisEndOffset: -0.3,
                           onResize: () {
-                            //print("here");
-                            // setState(() {
-                            //   var i = data.removeLast();
-
-                            //   data.insert(0, i);
-                            // });
                           },
                           onDismissed: (DismissDirection direction) {
                             if (direction == DismissDirection.endToStart)
