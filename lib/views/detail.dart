@@ -88,7 +88,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                 alignment: AlignmentDirectional.bottomCenter,
                 children: <Widget>[
                    CustomScrollView(
-                    shrinkWrap: false,
                     slivers: <Widget>[
                        SliverAppBar(
                         elevation: 0.0,
@@ -109,7 +108,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace:  FlexibleSpaceBar(
-                          title:  Text("Party"),
                           background:  Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
@@ -117,6 +115,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                 width: width.value,
                                 height: _appBarHeight,
                                 decoration:  BoxDecoration(
+                                  borderRadius:  BorderRadius.circular(20.0),
                                   image: data[img],
                                 ),
                               ),
@@ -134,13 +133,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                    Container(
+                                     decoration:  BoxDecoration(
+                                         color: CARD_GREY,
+                                         border:  Border(
+                                             bottom:  BorderSide(
+                                                 color: Colors.black12))),
                                     padding:  EdgeInsets.only(bottom: 20.0),
                                     alignment: Alignment.center,
-                                    decoration:  BoxDecoration(
-                                        color: CARD_GREY,
-                                        border:  Border(
-                                            bottom:  BorderSide(
-                                                color: Colors.black12))),
                                     child:  Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -149,12 +148,14 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           children: <Widget>[
                                              Icon(
                                               Icons.access_time,
-                                              color: Colors.cyan,
+                                              color: PRIMARY_COLOR,
                                             ),
                                              Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child:  Text("10:00  AM"),
+                                              child:  Text("10:00  AM",
+                                                  style:  TextStyle(color: Colors.white,
+                                                      fontWeight: FontWeight.normal)),
                                             )
                                           ],
                                         ),
@@ -162,13 +163,15 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           children: <Widget>[
                                              Icon(
                                               Icons.map,
-                                              color: Colors.cyan,
+                                              color: PRIMARY_COLOR,
                                             ),
                                              Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child:  Text("700 m"),
-                                            )
+                                              child:  Text("700 m",
+                                                  style:  TextStyle(color: Colors.white,
+                                                      fontWeight: FontWeight.normal),
+                                            ))
                                           ],
                                         ),
                                       ],
@@ -179,13 +182,15 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         top: 16.0, bottom: 8.0),
                                     child:  Text(
                                       "ABOUT",
-                                      style:  TextStyle(
+                                      style:  TextStyle(color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                    Text(
                                       "3 amigos is a place where you may find mexican style cuisine. "
-                                          "It offers fine sit-down dining as well as take-out with a variety of dessert and drinks"),
+                                          "It offers fine sit-down dining as well as take-out with a variety of dessert and drinks",
+                                     style: TextStyle(color: Colors.white,
+                                       fontWeight: FontWeight.normal)),
                                    Container(
                                     height: 100.0,
                                   )
@@ -201,42 +206,46 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       width: 600.0,
                       height: 80.0,
                       decoration:  BoxDecoration(
-                        color:  Color.fromRGBO(121, 114, 173, 1.0),
+                        color:  CARD_GREY,
                       ),
                       alignment: Alignment.center,
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                           FlatButton(
-                              padding:  EdgeInsets.all(0.0),
-                              onPressed: () {},
-                              child:  Container(
-                                height: 60.0,
-                                width: 130.0,
+                          FlatButton(
+                              child: Container(
+                                  height: 60.0,
+                                  width: 80,
+                                  alignment:
+                                  Alignment.center,
+                                  decoration:
+                                  BoxDecoration(
+                                    color: CARD_GREY,
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                        60.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.thumb_down,
+                                    color: Colors.red,
+                                  ))),
+                          FlatButton(
+                              child: Container(
+                                height: 60,
+                                width: 80,
                                 alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius:  BorderRadius.circular(60.0),
+                                decoration:
+                                BoxDecoration(
+                                  color: CARD_GREY,
+                                  borderRadius:
+                                  BorderRadius
+                                      .circular(
+                                      60.0),
                                 ),
-                                child:  Text(
-                                  "DON'T",
-                                  style:  TextStyle(color: Colors.white),
-                                ),
-                              )),
-                           FlatButton(
-                              padding:  EdgeInsets.all(0.0),
-                              onPressed: () {},
-                              child:  Container(
-                                height: 60.0,
-                                width: 130.0,
-                                alignment: Alignment.center,
-                                decoration:  BoxDecoration(
-                                  color: Colors.cyan,
-                                  borderRadius:  BorderRadius.circular(60.0),
-                                ),
-                                child:  Text(
-                                  "I'M IN",
-                                  style:  TextStyle(color: Colors.white),
+                                child: Icon(
+                                  Icons.thumb_up,
+                                  color: PRIMARY_COLOR,
                                 ),
                               ))
                         ],

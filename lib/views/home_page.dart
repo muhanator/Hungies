@@ -251,8 +251,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                         .spaceEvenly,
                                                 children: <Widget>[
                                                   FlatButton(
-                                                      padding:
-                                                          EdgeInsets.all(0.0),
                                                       onPressed: () {
                                                         swipeLeft();
                                                       },
@@ -274,8 +272,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                             color: Colors.red,
                                                           ))),
                                                   FlatButton(
-                                                      padding:
-                                                          EdgeInsets.all(0.0),
                                                       onPressed: () {
                                                         swipeRight();
                                                       },
