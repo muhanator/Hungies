@@ -233,7 +233,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   onTap: () {
                                     Navigator.of(context).push(PageRouteBuilder(
                                       pageBuilder: (_, __, ___) =>
-                                          RestaurantInfoPage(type: item),
+                                          RestaurantInfoPage(selectedImage: item),
                                     ));
                                   },
                                   child: Card(

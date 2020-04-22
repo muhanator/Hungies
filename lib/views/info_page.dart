@@ -3,21 +3,21 @@ import 'package:hungies/constants.dart';
 import 'package:hungies/data.dart';
 
 class RestaurantInfoPage extends StatefulWidget {
-  final DecorationImage type;
-  RestaurantInfoPage({this.type});
+  final DecorationImage selectedImage;
+  RestaurantInfoPage({this.selectedImage});
   @override
-  _RestaurantInfoPageState createState() =>  _RestaurantInfoPageState(type: type);
+  _RestaurantInfoPageState createState() =>  _RestaurantInfoPageState(selectedImage: selectedImage);
 }
 
 class _RestaurantInfoPageState extends State<RestaurantInfoPage> {
-  DecorationImage type;
-  _RestaurantInfoPageState({this.type});
+  DecorationImage selectedImage;
+  _RestaurantInfoPageState({this.selectedImage});
   List data = restaurantImages;
   double _appBarHeight = 256.0;
 
   @override
   Widget build(BuildContext context) {
-    int img = data.indexOf(type);
+    int img = data.indexOf(selectedImage);
     return  Theme(
       data:  ThemeData(
         brightness: Brightness.dark,
@@ -180,6 +180,22 @@ class _RestaurantInfoPageState extends State<RestaurantInfoPage> {
                                      ],
                                    ),
                                  ),
+                                SizedBox(height: 10),
+                                SizedBox(
+                                  height: 150,
+                                  child: ClipRRect(
+                                    borderRadius:  BorderRadius.circular(20.0),
+                                    child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: <Widget>[
+                                        Image.asset("assets/img1.jpg"),
+                                        Image.asset("assets/img2.jpg"),
+                                        Image.asset("assets/img3.jpg"),
+                                        Image.asset("assets/img4.jpg")
+                                        ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
