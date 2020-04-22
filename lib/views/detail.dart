@@ -196,18 +196,14 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
         bottomNavigationBar: Container(
-            width: 600.0,
-            height: 80.0,
-            alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
                     child: Container(
-                        height: 60.0,
-                        width: 80,
-                        alignment:
-                        Alignment.center,
+                        height: 65,
+                        width: 65,
+                        alignment: Alignment.center,
                         decoration:
                         BoxDecoration(
                           color: CARD_GREY,
@@ -222,8 +218,8 @@ class _DetailPageState extends State<DetailPage> {
                         ))),
                 FlatButton(
                     child: Container(
-                      height: 60,
-                      width: 80,
+                      height: 65,
+                      width: 65,
                       alignment: Alignment.center,
                       decoration:
                       BoxDecoration(

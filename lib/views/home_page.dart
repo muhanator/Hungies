@@ -149,18 +149,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
         ),
         bottomNavigationBar: Container(
-          color: Colors.black,
-            width: 600.0,
-            height: 80.0,
-            alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
                   onPressed: swipeLeft,
                     child: Container(
-                        height: 60.0,
-                        width: 80,
+                        height: 65,
+                        width: 65,
                         alignment:
                         Alignment.center,
                         decoration:
@@ -178,8 +174,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 FlatButton(
                   onPressed: swipeRight,
                     child: Container(
-                      height: 60,
-                      width: 80,
+                      height: 65,
+                      width: 65,
                       alignment: Alignment.center,
                       decoration:
                       BoxDecoration(
