@@ -111,6 +111,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 0.4;
     double initialBottom = 15.0;
     var dataLength = currentRestaurant.length;
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
