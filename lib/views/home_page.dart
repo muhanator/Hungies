@@ -157,8 +157,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: Container(
                         height: 65,
                         width: 65,
-                        alignment:
-                        Alignment.center,
                         decoration:
                         BoxDecoration(
                           color: CARD_GREY,
@@ -176,7 +174,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: Container(
                       height: 65,
                       width: 65,
-                      alignment: Alignment.center,
                       decoration:
                       BoxDecoration(
                         color: CARD_GREY,

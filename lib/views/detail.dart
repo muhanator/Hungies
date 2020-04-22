@@ -203,7 +203,6 @@ class _DetailPageState extends State<DetailPage> {
                     child: Container(
                         height: 65,
                         width: 65,
-                        alignment: Alignment.center,
                         decoration:
                         BoxDecoration(
                           color: CARD_GREY,
@@ -220,7 +219,6 @@ class _DetailPageState extends State<DetailPage> {
                     child: Container(
                       height: 65,
                       width: 65,
-                      alignment: Alignment.center,
                       decoration:
                       BoxDecoration(
                         color: CARD_GREY,
