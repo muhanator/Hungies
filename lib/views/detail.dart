@@ -4,15 +4,12 @@ import 'package:hungies/data.dart';
 
 class DetailPage extends StatefulWidget {
   final DecorationImage type;
-  const DetailPage({Key key, this.type}) : super(key: key);
+  DetailPage({this.type});
   @override
   _DetailPageState createState() =>  _DetailPageState(type: type);
 }
 
-enum AppBarBehavior { normal, pinned, floating, snapping }
-
-class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
-  AnimationController _containerController;
+class _DetailPageState extends State<DetailPage> {
   Animation<double> width;
   Animation<double> heigth;
   DecorationImage type;
@@ -20,39 +17,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   List data = restaurantImages;
   double _appBarHeight = 256.0;
 
-  void initState() {
-    _containerController =  AnimationController(
-        duration:  Duration(milliseconds: 2000), vsync: this);
-    super.initState();
-    width =  Tween<double>(
-      begin: 200.0,
-      end: 220.0,
-    ).animate(
-       CurvedAnimation(
-        parent: _containerController,
-        curve: Curves.ease,
-      ),
-    );
-    heigth =  Tween<double>(
-      begin: 400.0,
-      end: 400.0,
-    ).animate(
-       CurvedAnimation(
-        parent: _containerController,
-        curve: Curves.ease,
-      ),
-    );
-    heigth.addListener(() {
-      setState(() {
-        if (heigth.isCompleted) {}
-      });
-    });
-    _containerController.forward();
-  }
-
   @override
   void dispose() {
-    _containerController.dispose();
     super.dispose();
   }
 
@@ -66,8 +32,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
         platform: Theme.of(context).platform,
       ),
       child:  Container(
-        width: width.value,
-        height: heigth.value,
         color: Colors.black,
         child: new Hero(
           tag: "img",
@@ -75,8 +39,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             color: Colors.transparent,
             child:  Container(
               alignment: Alignment.center,
-              width: width.value,
-              height: heigth.value,
               decoration:  BoxDecoration(
                 borderRadius:  BorderRadius.circular(20.0),
               ),
@@ -103,7 +65,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             fit: StackFit.expand,
                             children: <Widget>[
                                Container(
-                                width: width.value,
                                 height: _appBarHeight,
                                 decoration:  BoxDecoration(
                                   borderRadius:  BorderRadius.circular(20.0),

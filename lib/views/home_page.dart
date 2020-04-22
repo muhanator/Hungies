@@ -174,7 +174,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           Icons.clear,
                           color: Colors.red,
                         ))),
-                FlatButton(
+                FloatingActionButton(
                   onPressed: swipeRight,
                     child: Container(
                       height: 60,
@@ -243,9 +243,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ));
                                   },
                                   child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
                                     color: Colors.transparent,
                                     elevation: 4.0,
                                     child: Container(
@@ -257,7 +254,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       decoration: BoxDecoration(
                                         color: CARD_GREY,
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(20.0),
                                       ),
                                       child: Column(
                                         children: <Widget>[
@@ -267,10 +264,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                 10,
                                             height: screenSize.height / 2.2,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(8.0),
-                                                  topRight:
-                                                      Radius.circular(8.0)),
+                                              borderRadius: BorderRadius.circular(20.0),
                                               image: item,
                                             ),
                                           ),
@@ -311,9 +305,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       return new Positioned(
                         bottom: 100.0 + backCardPosition,
                         child: new Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
                           color: Colors.transparent,
                           elevation: 4.0,
                           child: new Container(
@@ -322,7 +313,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             height: screenSize.height / 1.7,
                             decoration: new BoxDecoration(
                               color: CARD_GREY,
-                              borderRadius: new BorderRadius.circular(8.0),
+                              borderRadius: new BorderRadius.circular(20.0),
                             ),
                             child: Column(
                               children: <Widget>[
@@ -330,9 +321,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   width: screenSize.width / 1.2 + backCardWidth,
                                   height: screenSize.height / 2.2,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(8.0),
-                                        topRight: Radius.circular(8.0)),
+                                    borderRadius: BorderRadius.circular(20.0),
                                     image: item,
                                   ),
                                 ),
