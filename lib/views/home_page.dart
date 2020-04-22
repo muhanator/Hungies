@@ -214,8 +214,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: Dismissible(
                           key: Key(Random().toString()),
                           crossAxisEndOffset: -0.3,
-                          onResize: () {
-                          },
                           onDismissed: (DismissDirection direction) {
                             if (direction == DismissDirection.endToStart) {
                               dismissImage(item);
