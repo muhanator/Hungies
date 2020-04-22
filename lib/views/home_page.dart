@@ -120,7 +120,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
         appBar: AppBar(
           brightness: Brightness.dark,
-          backgroundColor: DARK_GREY,
+          backgroundColor: Colors.black,
           centerTitle: true,
           leading: Container(
             margin: const EdgeInsets.all(12.0),
@@ -157,7 +157,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
         ),
         body: Container(
-          color: DARK_GREY,
+          color: Colors.black,
           alignment: Alignment.center,
           child: dataLength > 0
               ? Stack(

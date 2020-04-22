@@ -21,7 +21,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   _DetailPageState({this.type});
   List data = restaurantImages;
   double _appBarHeight = 256.0;
-  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   void initState() {
     _containerController =  AnimationController(
@@ -65,13 +64,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
     return  Theme(
       data:  ThemeData(
         brightness: Brightness.light,
-        primaryColor: DARK_GREY,
+        primaryColor: Colors.black,
         platform: Theme.of(context).platform,
       ),
       child:  Container(
         width: width.value,
         height: heigth.value,
-        color: CARD_GREY,
+        color: Colors.black,
         child: new Hero(
           tag: "img",
           child: new Card(
@@ -81,8 +80,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
               width: width.value,
               height: heigth.value,
               decoration:  BoxDecoration(
-                color: CARD_GREY,
-                borderRadius:  BorderRadius.circular(10.0),
+                borderRadius:  BorderRadius.circular(20.0),
               ),
               child:  Stack(
                 alignment: AlignmentDirectional.bottomCenter,
@@ -90,7 +88,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                    CustomScrollView(
                     slivers: <Widget>[
                        SliverAppBar(
-                        elevation: 0.0,
                         forceElevated: true,
                         leading:  IconButton(
                           onPressed: () {
@@ -103,10 +100,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           ),
                         ),
                         expandedHeight: _appBarHeight,
-                        pinned: _appBarBehavior == AppBarBehavior.pinned,
-                        floating: _appBarBehavior == AppBarBehavior.floating ||
-                            _appBarBehavior == AppBarBehavior.snapping,
-                        snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace:  FlexibleSpaceBar(
                           background:  Stack(
                             fit: StackFit.expand,
@@ -125,77 +118,122 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       ),
                        SliverList(
                         delegate:  SliverChildListDelegate(<Widget>[
-                           Container(
-                            color: CARD_GREY,
-                            child:  Padding(
-                              padding: const EdgeInsets.all(35.0),
-                              child:  Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                   Container(
-                                     decoration:  BoxDecoration(
-                                         color: CARD_GREY,
-                                         border:  Border(
-                                             bottom:  BorderSide(
-                                                 color: Colors.black12))),
-                                    padding:  EdgeInsets.only(bottom: 20.0),
-                                    alignment: Alignment.center,
-                                    child:  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                         Row(
-                                          children: <Widget>[
-                                             Icon(
-                                              Icons.access_time,
-                                              color: PRIMARY_COLOR,
+                          SizedBox(height: 10),
+                          Container(
+                            color: Colors.black,
+                            child:  Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                 Container(
+                                   decoration:  BoxDecoration(
+                                       borderRadius:  BorderRadius.circular(20.0),
+                                       color: CARD_GREY),
+                                  padding:  const EdgeInsets.all(15),
+                                  alignment: Alignment.center,
+                                  child:  Column(
+                                    children: <Widget>[
+                                      Text(
+                                        "INFO",
+                                        style:  TextStyle(color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.location_on,
+                                            color: PRIMARY_COLOR,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Flexible(
+                                            child: Text("1657 Saint-Catherine St W, Montreal, Quebec H3H 1L7",
+                                              style:  TextStyle(color: Colors.white,
+                                                  fontWeight: FontWeight.normal),
                                             ),
-                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child:  Text("10:00  AM",
-                                                  style:  TextStyle(color: Colors.white,
-                                                      fontWeight: FontWeight.normal)),
-                                            )
-                                          ],
-                                        ),
-                                         Row(
-                                          children: <Widget>[
-                                             Icon(
-                                              Icons.map,
-                                              color: PRIMARY_COLOR,
-                                            ),
-                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child:  Text("700 m",
-                                                  style:  TextStyle(color: Colors.white,
-                                                      fontWeight: FontWeight.normal),
-                                            ))
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 16.0, bottom: 8.0),
-                                    child:  Text(
-                                      "ABOUT",
-                                      style:  TextStyle(color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                   Text(
-                                      "3 amigos is a place where you may find mexican style cuisine. "
-                                          "It offers fine sit-down dining as well as take-out with a variety of dessert and drinks",
-                                     style: TextStyle(color: Colors.white,
-                                       fontWeight: FontWeight.normal)),
-                                   Container(
-                                    height: 100.0,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.phone,
+                                            color: PRIMARY_COLOR,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text("(514) 939-3329",
+                                            style:  TextStyle(color: Colors.white,
+                                                fontWeight: FontWeight.normal),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.access_time,
+                                            color: PRIMARY_COLOR,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text("9:00  AM - 8:00 PM",
+                                              style:  TextStyle(color: Colors.white,
+                                                  fontWeight: FontWeight.normal))
+                                        ],
+                                      ),
+                                      SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.arrow_upward,
+                                            color: PRIMARY_COLOR,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text("7 min (600 m)",
+                                            style:  TextStyle(color: Colors.white,
+                                                fontWeight: FontWeight.normal),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.public,
+                                            color: PRIMARY_COLOR,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text("3amigosrestaurants.com",
+                                            style:  TextStyle(color: Colors.white,
+                                                fontWeight: FontWeight.normal),
+                                          )
+                                        ],
+                                      ),
+                                    ],
                                   )
-                                ],
-                              ),
+                                ),
+                                 SizedBox(height: 10),
+                                 Container(
+                                   padding:  const EdgeInsets.all(15),
+                                   decoration:  BoxDecoration(
+                                       borderRadius:  BorderRadius.circular(20.0),
+                                       color: CARD_GREY),
+                                   child: Column(
+                                     children: <Widget>[
+                                       Text(
+                                         "ABOUT",
+                                         style:  TextStyle(color: Colors.white,
+                                             fontWeight: FontWeight.bold),
+                                       ),
+                                       SizedBox(height: 10),
+                                       Text(
+                                           "3 amigos is a place where you may find mexican style cuisine. "
+                                               "It offers fine sit-down dining as well as take-out with a variety of dessert and drinks.",
+                                           style: TextStyle(color: Colors.white,
+                                               fontWeight: FontWeight.normal))
+                                     ],
+                                   ),
+                                 ),
+                              ],
                             ),
                           ),
                         ]),
@@ -205,11 +243,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                    Container(
                       width: 600.0,
                       height: 80.0,
-                      decoration:  BoxDecoration(
-                        color:  CARD_GREY,
-                      ),
                       alignment: Alignment.center,
-                      child:  Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           FlatButton(
@@ -227,7 +262,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         60.0),
                                   ),
                                   child: Icon(
-                                    Icons.thumb_down,
+                                    Icons.clear,
                                     color: Colors.red,
                                   ))),
                           FlatButton(
@@ -244,7 +279,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                       60.0),
                                 ),
                                 child: Icon(
-                                  Icons.thumb_up,
+                                  Icons.favorite,
                                   color: PRIMARY_COLOR,
                                 ),
                               ))
