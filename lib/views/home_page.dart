@@ -33,7 +33,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.bounceInOut,
+        curve: Curves.ease,
       ),
     );
     rotate.addListener(() {
@@ -53,7 +53,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.bounceInOut,
+        curve: Curves.ease,
       ),
     );
     bottom = Tween<double>(
@@ -62,7 +62,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.bounceInOut,
+        curve: Curves.ease,
       ),
     );
   }
