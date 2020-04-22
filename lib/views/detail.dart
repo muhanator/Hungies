@@ -34,7 +34,6 @@ class _DetailPageState extends State<DetailPage> {
                 borderRadius:  BorderRadius.circular(20.0),
               ),
               child:  Stack(
-                alignment: AlignmentDirectional.bottomCenter,
                 children: <Widget>[
                    CustomScrollView(
                     slivers: <Widget>[
