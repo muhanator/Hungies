@@ -117,6 +117,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return Scaffold(
+      backgroundColor: Colors.black,
         appBar: AppBar(
           brightness: Brightness.dark,
           backgroundColor: Colors.black,
