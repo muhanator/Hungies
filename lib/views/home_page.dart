@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  AnimationController _buttonController;
+  AnimationController controller;
   Animation<double> rotate;
   Animation<double> right;
   Animation<double> bottom;
@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _buttonController = AnimationController(
+    controller = AnimationController(
         duration: Duration(milliseconds: 1000), vsync: this);
 
     rotate = Tween<double>(
@@ -32,7 +32,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       end: -40.0,
     ).animate(
       CurvedAnimation(
-        parent: _buttonController,
+        parent: controller,
         curve: Curves.bounceInOut,
       ),
     );
@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
           var i = currentRestaurant.removeLast();
           currentRestaurant.insert(0, i);
 
-          _buttonController.reset();
+          controller.reset();
         }
       });
     });
@@ -52,7 +52,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       end: 400.0,
     ).animate(
       CurvedAnimation(
-        parent: _buttonController,
+        parent: controller,
         curve: Curves.bounceInOut,
       ),
     );
@@ -61,7 +61,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       end: 100.0,
     ).animate(
       CurvedAnimation(
-        parent: _buttonController,
+        parent: controller,
         curve: Curves.bounceInOut,
       ),
     );
@@ -69,23 +69,23 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _buttonController.dispose();
     super.dispose();
+    controller.dispose();
   }
 
-  Future<Null> _swipeAnimation() async {
+  Future<Null> swipeAnimation() async {
     try {
-      await _buttonController.forward();
+      await controller.forward();
     } on TickerCanceled {}
   }
 
-  dismissImg(DecorationImage img) {
+  dismissImage(DecorationImage img) {
     setState(() {
       currentRestaurant.remove(img);
     });
   }
 
-  addImg(DecorationImage img) {
+  addImage(DecorationImage img) {
     setState(() {
       currentRestaurant.remove(img);
       selectedRestaurant.add(img);
@@ -97,7 +97,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       setState(() {
         booleanFlag = 1;
       });
-    _swipeAnimation();
+    swipeAnimation();
     Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
   }
 
@@ -106,13 +106,11 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       setState(() {
         booleanFlag = 0;
       });
-    _swipeAnimation();
+    swipeAnimation();
   }
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 0.4;
-
     double initialBottom = 15.0;
     var dataLength = currentRestaurant.length;
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
@@ -131,37 +129,76 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           actions: <Widget>[
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                  margin: const EdgeInsets.all(12.0),
-                  child: Icon(
-                    Icons.account_circle,
-                    color: PRIMARY_COLOR,
-                    size: 30.0,
-                  )),
-            ),
+            Container(
+                margin: const EdgeInsets.all(12.0),
+                child: Icon(
+                  Icons.account_circle,
+                  color: PRIMARY_COLOR,
+                  size: 30.0,
+                )),
           ],
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "Hungies",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: PRIMARY_COLOR,
-                    letterSpacing: 2,
-                    fontWeight: FontWeight.bold),
-              )
-            ],
+          title: Text(
+            "Hungies",
+            style: TextStyle(
+                fontSize: 20,
+                color: PRIMARY_COLOR,
+                letterSpacing: 2,
+                fontWeight: FontWeight.bold),
           ),
         ),
+        bottomNavigationBar: Container(
+          color: Colors.black,
+            width: 600.0,
+            height: 80.0,
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FlatButton(
+                  onPressed: swipeLeft,
+                    child: Container(
+                        height: 60.0,
+                        width: 80,
+                        alignment:
+                        Alignment.center,
+                        decoration:
+                        BoxDecoration(
+                          color: CARD_GREY,
+                          borderRadius:
+                          BorderRadius
+                              .circular(
+                              60.0),
+                        ),
+                        child: Icon(
+                          Icons.clear,
+                          color: Colors.red,
+                        ))),
+                FlatButton(
+                  onPressed: swipeRight,
+                    child: Container(
+                      height: 60,
+                      width: 80,
+                      alignment: Alignment.center,
+                      decoration:
+                      BoxDecoration(
+                        color: CARD_GREY,
+                        borderRadius:
+                        BorderRadius
+                            .circular(
+                            60.0),
+                      ),
+                      child: Icon(
+                        Icons.favorite,
+                        color: PRIMARY_COLOR,
+                      ),
+                    ))
+              ],
+            )),
         body: Container(
           color: Colors.black,
-          alignment: Alignment.center,
           child: dataLength > 0
               ? Stack(
-                  alignment: AlignmentDirectional.center,
+                  alignment: AlignmentDirectional.bottomCenter,
                   children: currentRestaurant.map((item) {
                     if (currentRestaurant.indexOf(item) == dataLength - 1) {
                       Size screenSize = MediaQuery.of(context).size;
@@ -180,10 +217,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           },
                           onDismissed: (DismissDirection direction) {
                             if (direction == DismissDirection.endToStart) {
-                              dismissImg(item);
+                              dismissImage(item);
                             }
                             else {
-                              addImg(item);
+                              addImage(item);
                               Navigator.push(context, MaterialPageRoute(builder: (context) => Map()));
                             }
                           },
@@ -198,7 +235,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   ? rotate.value / 360
                                   : -rotate.value / 360),
                               child: Hero(
-                                tag: "img",
+                                tag: "image",
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).push(PageRouteBuilder(
@@ -239,62 +276,25 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             ),
                                           ),
                                           Container(
-                                              width: screenSize.width / 1.2 +
-                                                  backCardWidth +
-                                                  10,
-                                              height: screenSize.height / 1.7 -
-                                                  screenSize.height / 2.2,
-                                              alignment: Alignment.center,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  FlatButton(
-                                                      onPressed: () {
-                                                        swipeLeft();
-                                                      },
-                                                      child: Container(
-                                                          height: 60.0,
-                                                          width: 80,
-                                                          alignment:
-                                                              Alignment.center,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: CARD_GREY,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        60.0),
-                                                          ),
-                                                          child: Icon(
-                                                            Icons.thumb_down,
-                                                            color: Colors.red,
-                                                          ))),
-                                                  FlatButton(
-                                                      onPressed: () {
-                                                        swipeRight();
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: 80,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: CARD_GREY,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      60.0),
-                                                        ),
-                                                        child: Icon(
-                                                          Icons.thumb_up,
-                                                          color: PRIMARY_COLOR,
-                                                        ),
-                                                      ))
-                                                ],
-                                              ))
+                                            padding:  const EdgeInsets.all(15),
+                                            decoration:  BoxDecoration(
+                                                borderRadius:  BorderRadius.circular(20.0),
+                                                color: CARD_GREY),
+                                            child: Column(
+                                              children: <Widget>[
+                                                Text(
+                                                  "About",
+                                                  style:  TextStyle(color: Colors.white,
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Text(
+                                                    "Mexican style restaurant.",
+                                                    style: TextStyle(color: Colors.white,
+                                                        fontWeight: FontWeight.normal))
+                                              ],
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -308,7 +308,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     } else {
                       backCardPosition = backCardPosition - 10;
                       backCardWidth = backCardWidth + 10;
-
                       Size screenSize = MediaQuery.of(context).size;
                       return new Positioned(
                         bottom: 100.0 + backCardPosition,
@@ -339,51 +338,25 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 Container(
-                                    width:
-                                        screenSize.width / 1.2 + backCardWidth,
-                                    height: screenSize.height / 1.7 -
-                                        screenSize.height / 2.2,
-                                    alignment: Alignment.center,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        FlatButton(
-                                            padding: EdgeInsets.all(0.0),
-                                            onPressed: () {},
-                                            child: Container(
-                                                height: 60.0,
-                                                width: 80,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                  color: CARD_GREY,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          60.0),
-                                                ),
-                                                child: Icon(
-                                                  Icons.thumb_down,
-                                                  color: Colors.red,
-                                                ))),
-                                        FlatButton(
-                                            padding: EdgeInsets.all(0.0),
-                                            onPressed: () {},
-                                            child: Container(
-                                              height: 60,
-                                              width: 80,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                color: CARD_GREY,
-                                                borderRadius:
-                                                    BorderRadius.circular(60.0),
-                                              ),
-                                              child: Icon(
-                                                Icons.thumb_up,
-                                                color: PRIMARY_COLOR,
-                                              ),
-                                            ))
-                                      ],
-                                    ))
+                                  padding:  const EdgeInsets.all(15),
+                                  decoration:  BoxDecoration(
+                                      borderRadius:  BorderRadius.circular(20.0),
+                                      color: CARD_GREY),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text(
+                                        "About",
+                                        style:  TextStyle(color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                          "Mexican style restaurant.",
+                                          style: TextStyle(color: Colors.white,
+                                              fontWeight: FontWeight.normal))
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
