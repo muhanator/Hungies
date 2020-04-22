@@ -174,7 +174,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           Icons.clear,
                           color: Colors.red,
                         ))),
-                FloatingActionButton(
+                FlatButton(
                   onPressed: swipeRight,
                     child: Container(
                       height: 60,
