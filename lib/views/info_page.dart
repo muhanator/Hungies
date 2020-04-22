@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hungies/constants.dart';
 import 'package:hungies/data.dart';
 
-class DetailPage extends StatefulWidget {
+class RestaurantInfoPage extends StatefulWidget {
   final DecorationImage type;
-  DetailPage({this.type});
+  RestaurantInfoPage({this.type});
   @override
-  _DetailPageState createState() =>  _DetailPageState(type: type);
+  _RestaurantInfoPageState createState() =>  _RestaurantInfoPageState(type: type);
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _RestaurantInfoPageState extends State<RestaurantInfoPage> {
   DecorationImage type;
-  _DetailPageState({this.type});
+  _RestaurantInfoPageState({this.type});
   List data = restaurantImages;
   double _appBarHeight = 256.0;
 
@@ -40,13 +40,11 @@ class _DetailPageState extends State<DetailPage> {
                        SliverAppBar(
                         forceElevated: true,
                         leading:  IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+                          onPressed: () => Navigator.of(context).pop(),
                           icon:  Icon(
                             Icons.arrow_back,
                             color: PRIMARY_COLOR,
-                            size: 30.0,
+                            size: 30,
                           ),
                         ),
                         expandedHeight: _appBarHeight,

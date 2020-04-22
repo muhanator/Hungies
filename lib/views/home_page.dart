@@ -5,7 +5,7 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:hungies/widgets/map.dart';
 import 'package:hungies/constants.dart';
 import '../data.dart';
-import 'detail.dart';
+import 'info_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -233,7 +233,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   onTap: () {
                                     Navigator.of(context).push(PageRouteBuilder(
                                       pageBuilder: (_, __, ___) =>
-                                          DetailPage(type: item),
+                                          RestaurantInfoPage(type: item),
                                     ));
                                   },
                                   child: Card(
