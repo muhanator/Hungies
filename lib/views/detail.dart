@@ -182,7 +182,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                       Row(
                                         children: <Widget>[
                                           Icon(
-                                            Icons.arrow_upward,
+                                            Icons.directions_walk,
                                             color: PRIMARY_COLOR,
                                           ),
                                           SizedBox(width: 10),
