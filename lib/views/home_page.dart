@@ -111,7 +111,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 0.4;
+    timeDilation = 1;
     double initialBottom = 15.0;
     var dataLength = currentRestaurant.length;
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
@@ -231,9 +231,8 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 tag: "image",
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(PageRouteBuilder(
-                                      pageBuilder: (_, __, ___) =>
-                                          RestaurantInfoPage(selectedImage: item),
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => RestaurantInfoPage(selectedImage: item)
                                     ));
                                   },
                                   child: Card(
